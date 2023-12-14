@@ -1,15 +1,18 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import { Button } from '@material-tailwind/react'
+import { Accordion, AccordionBody, AccordionHeader, Button } from '@material-tailwind/react'
+import { Example } from './Shared/Example';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [open, setOpen] = useState(1)
+  const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
   return (
     <>
-      <Button>click me nigga</Button>
+
+    <Example></Example>
+
+    
     </>
   )
 }
