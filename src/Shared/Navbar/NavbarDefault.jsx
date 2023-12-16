@@ -4,6 +4,7 @@ import { FaHome, FaQuestionCircle, FaPhoneAlt } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { MdFindInPage } from "react-icons/md";
 import { motion } from "framer-motion"
+import { NavLink } from "react-router-dom";
 
  function NavbarDefault() {
   const [openNav, setOpenNav] = React.useState(false);
@@ -16,48 +17,58 @@ import { motion } from "framer-motion"
  
   const navList = (
     <ul className={ulClass}>
-
-      <motion.Typography initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .3}}  as="li" variant="small" color="blue-gray" className={menuClass} >
+      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .3}}>
+      <Typography   as="li" variant="small" color="blue-gray" className={menuClass} >
         <FaHome />
         <a href="#" className="">Home</a>
-      </motion.Typography>
+      </Typography>
+      </motion.div>
 
-      <motion.NavLink initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .4}} as="li" variant="small" color="blue-gray" className={menuClass}>
+      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .4}}>
+      <Typography  as="li" variant="small" color="blue-gray" className={menuClass}>
        <FaMagnifyingGlass />Lost
-      </motion.NavLink>
+      </Typography>
+      </motion.div>
 
-      <motion.Typography initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .5}} as="li" variant="small" color="blue-gray" className={menuClass}>
+      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .5}}>
+      <Typography  as="li" variant="small" color="blue-gray" className={menuClass}>
        <MdFindInPage />
         <a href="#" className="flex items-center">Found</a>
-      </motion.Typography>
+      </Typography>
+      </motion.div>
 
-
-      <motion.Typography initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .6}} as="li" variant="small" color="blue-gray" className={menuClass}>
+      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .6}}>
+      <Typography  as="li" variant="small" color="blue-gray" className={menuClass}>
       <FaQuestionCircle />
         <a href="#" className="flex items-center">How It Works </a>
-      </motion.Typography>
+      </Typography>
+      </motion.div>
 
-      <motion.Typography initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .7}} as="li" variant="small" color="blue-gray" className={menuClass}>
+      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .7}}>
+      <Typography  as="li" variant="small" color="blue-gray" className={menuClass}>
         <FaPhoneAlt />
         <a href="#" className="flex items-center"> Contact Us </a>
-      </motion.Typography>
+      </Typography>
+      </motion.div>
     </ul>
   );
  
   return (
-    <Navbar className="bg-[#bfdbf7] border-0 rounded-none  mx-auto max-w-full px-4 py-2 lg:px-8 lg:py-4">
+    <Navbar className="bg-[#bfdbf7] border-0 rounded-none  mx-auto max-w-full px-4 py-2 lg:px-8 lg:py-4 overflow-hidden">
       <div className=" mx-auto flex items-center justify-between text-blue-gray-900">
 
-        <Typography as="a" href="#" className="mr-4 cursor-pointer py-1.5 font-medium text-xl text-[#022b3a]">
+        <motion.div initial={{scale:.2, x:-200}} animate={{scale: 1, x:0}} transition={{duration: .6}}>
+        <Typography  as="a" href="#" className="mr-4 cursor-pointer py-1.5 font-medium text-xl text-[#022b3a]">
           <span className="text-[#022b3a] text-2xl">L</span>ost<span className="text-[#022b3a] text-2xl">N</span>foun<span className="text-[#022b3a] text-2xl">D</span>
         </Typography>
+        </motion.div>
         
         {/* search, dashboard & login/signUp */}
         <div className="flex  justify-end gap-10 items-center text-[#022b3a]">
 
         <div className="hidden lg:block">{navList}</div>
 
-        <div className="items-center hidden gap-x-2 lg:flex">
+        <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration: 1}} className="items-center hidden gap-x-2 lg:flex">
           <div className="relative flex w-full gap-2 md:w-max">
             <div className="relative h-10 w-full  min-w-[288px]">
               <input type="search" placeholder="Lost something?"
@@ -79,7 +90,7 @@ import { motion } from "framer-motion"
           <Button variant="text" size="sm" className="hidden lg:inline-block bg-white text-[#022b3a] py-3 px-6">
                 <span>Search</span>
               </Button>
-            </div>
+            </motion.div>
 
         <div>
         {
@@ -93,7 +104,7 @@ import { motion } from "framer-motion"
               </Button>
             </div>:
             <div className="">
-              <motion.img initial={{scale:.5}} animate={{scale: 1}} transition={{duration: .2}} className="w-[50px] rounded-full " src="https://i.ibb.co/F6tKccF/image.png" alt="" />
+              <motion.img initial={{scale:.2, x:200}} animate={{scale: 1, x:0}} transition={{duration: .6}} className="w-[50px] rounded-full " src="https://i.ibb.co/F6tKccF/image.png" alt="" />
             </div>
               }
         </div>
