@@ -2,12 +2,14 @@ import React from "react";
 import {Navbar,Typography,Button,IconButton, Collapse} from "@material-tailwind/react";
 import { FaHome, FaQuestionCircle, FaPhoneAlt } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import { MdFindInPage } from "react-icons/md";
+import { IoIosLogOut } from "react-icons/io";
+import { MdFindInPage, MdOutlineDashboard } from "react-icons/md";
 import { motion } from "framer-motion"
 import { NavLink } from "react-router-dom";
 
  function NavbarDefault() {
   const [openNav, setOpenNav] = React.useState(false);
+  const [openMenu, setOpenMenu] = React.useState(false);
   const user = true
   const menuClass = "flex items-center gap-x-2 font-medium w-full cursor-pointer hover:shadow-xl  bg-white rounded-lg p-2"
   const activeMenuClass = "flex items-center gap-x-2 font-medium w-full text-white cursor-pointer hover:shadow-xl bg-[#022b3a] rounded-lg p-2"
@@ -18,34 +20,34 @@ import { NavLink } from "react-router-dom";
  
   const navList = (
     <ul className={ulClass}>
-      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .3}}>
+      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} whileHover={{y:-5, transition: { duration: 0.1 }}} transition={{ duration: .3}}>
       <NavLink to='/' className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
         <FaHome />Home
       </NavLink>
       </motion.div>
 
-      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .4}}>
+      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} whileHover={{y:-5, transition: { duration: 0.1 }}} transition={{ duration: .4}}>
       <NavLink to='/lost' className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
        <FaMagnifyingGlass />
        Lost
       </NavLink>
       </motion.div>
 
-      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .5}}>
+    <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} whileHover={{y:-5, transition: { duration: 0.1 }}} transition={{ duration: .5}}>
       <NavLink  className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
        <MdFindInPage />
        Found
       </NavLink>
       </motion.div>
 
-      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .6}}>
+      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} whileHover={{y:-5, transition: { duration: 0.1 }}} transition={{ duration: .6}}>
       <NavLink  className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
       <FaQuestionCircle />
        How It Works
       </NavLink>
       </motion.div>
 
-      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .7}}>
+      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} whileHover={{y:-5, transition: { duration: 0.1 }}} transition={{ duration: .7}}>
       <NavLink  className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
         <FaPhoneAlt />
        Contact Us
@@ -55,13 +57,12 @@ import { NavLink } from "react-router-dom";
   );
  
   return (
-    <Navbar className="bg-[#bfdbf7] border-0  rounded-none flex-row-reverse  mx-auto max-w-full px-4 py-2 lg:px-8 lg:py-4 overflow-hidden">
+    <Navbar className="bg-[#bfdbf7] border-0  rounded-none flex-row-reverse  mx-auto max-w-full px-4 py-2 lg:px-8 lg:py-4 ">
       <div className=" mx-auto flex items-center justify-between text-blue-gray-900">
 
         <motion.div initial={{scale:.2}} animate={{scale: 1}} transition={{duration: .6}}>
         <Typography  as="a" href="/" className="mr-4 cursor-pointer py-1.5 font-medium text-xl text-[#022b3a]">
           <img className="w-[110px]  m-0" src="https://i.ibb.co/fGBFGB6/lostnfound-high-resolution-logo-transparent.png" alt="" />
-          {/* <span className="text-[#022b3a] text-2xl">L</span>ost<span className="text-[#022b3a] text-2xl">N</span>foun<span className="text-[#022b3a] text-2xl">D</span> */}
         </Typography>
         </motion.div>
         
@@ -105,9 +106,22 @@ import { NavLink } from "react-router-dom";
                 <span>Sign in</span>
               </Button>
             </div>:
-            <div className="">
-              <motion.img initial={{scale:.2}} animate={{scale: 1}} transition={{duration: .6}} className="w-[50px] rounded-full " src="https://i.ibb.co/F6tKccF/image.png" alt="" />
-            </div>
+      <details className="dropdown overflow-visible">
+        <summary className="p-0 rounded-full border-0 btn bg-transparent ">        <motion.img initial={{scale:.2}} animate={{scale: 1}} transition={{duration: .6}} className="w-[50px] rounded-full " src="https://i.ibb.co/F6tKccF/image.png" alt="" /></summary>
+        <ul className="p-2 shadow menu right-0 w-fit space-y-2 dropdown-content z-[1] bg-base-100 rounded-box lg:w-52">
+        <h1 className="text-[#022b3a] font-bold p-2 pl-4">Username</h1>
+        <NavLink  className={` ${menuClass} hover:bg-[#022b3a] hover:text-white`}>
+        <MdOutlineDashboard />Dashboard
+        </NavLink>
+        <NavLink  className={` ${menuClass} hover:bg-[#022b3a] hover:text-white`}>
+        <IoIosLogOut /> Log Out
+        </NavLink>
+        </ul>
+        {/* <ul className="p-2 shadow menu lg:hidden right-0 w-fit  dropdown-content z-[1] bg-base-100 rounded-box lg:w-52">
+          <li><a>Dashboard</a></li>
+          <li><a>Log Out</a></li>
+        </ul> */}
+      </details>
               }
         </div>
         </div>
