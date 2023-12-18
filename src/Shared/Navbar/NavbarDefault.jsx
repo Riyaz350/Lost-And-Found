@@ -134,7 +134,7 @@ import { NavLink } from "react-router-dom";
             <span>Sign in</span>
           </Button>
         </div>:
-        <div></div>}
+        <></>}
 
         </div>
       </MobileNav>
