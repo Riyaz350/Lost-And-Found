@@ -4,12 +4,13 @@ import { FaHome, FaQuestionCircle, FaPhoneAlt } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { MdFindInPage } from "react-icons/md";
 import { motion } from "framer-motion"
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
  function NavbarDefault() {
   const [openNav, setOpenNav] = React.useState(false);
   const user = true
   const menuClass = "flex items-center gap-x-2 font-medium  cursor-pointer hover:shadow-xl bg-white rounded-lg p-2"
+  const activeMenuClass = "flex items-center gap-x-2 font-medium text-white cursor-pointer hover:shadow-xl bg-[#022b3a] rounded-lg p-2"
   const ulClass = "mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-end lg:gap-6"
  
   React.useEffect(() => {
@@ -18,37 +19,37 @@ import { NavLink } from "react-router-dom";
   const navList = (
     <ul className={ulClass}>
       <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .3}}>
-      <Typography   as="li" variant="small" color="blue-gray" className={menuClass} >
-        <FaHome />
-        <a href="#" className="">Home</a>
-      </Typography>
+      <NavLink to='/' className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
+        <FaHome />Home
+      </NavLink>
       </motion.div>
 
       <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .4}}>
-      <Typography  as="li" variant="small" color="blue-gray" className={menuClass}>
-       <FaMagnifyingGlass />Lost
-      </Typography>
+      <NavLink to='/lost' className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
+       <FaMagnifyingGlass />
+       Lost
+      </NavLink>
       </motion.div>
 
       <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .5}}>
-      <Typography  as="li" variant="small" color="blue-gray" className={menuClass}>
+      <NavLink to='/' className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
        <MdFindInPage />
-        <a href="#" className="flex items-center">Found</a>
-      </Typography>
+       Found
+      </NavLink>
       </motion.div>
 
       <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .6}}>
-      <Typography  as="li" variant="small" color="blue-gray" className={menuClass}>
+      <NavLink to='/' className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
       <FaQuestionCircle />
-        <a href="#" className="flex items-center">How It Works </a>
-      </Typography>
+       How It Works
+      </NavLink>
       </motion.div>
 
       <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .7}}>
-      <Typography  as="li" variant="small" color="blue-gray" className={menuClass}>
+      <NavLink to='/' className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
         <FaPhoneAlt />
-        <a href="#" className="flex items-center"> Contact Us </a>
-      </Typography>
+       Contact Us
+      </NavLink>
       </motion.div>
     </ul>
   );
