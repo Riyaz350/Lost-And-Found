@@ -6,9 +6,7 @@ const Home = () => {
         <div>
             <NavbarDefault></NavbarDefault>
             <Outlet></Outlet>
-            
         </div>
     );
 };
-
 export default Home;

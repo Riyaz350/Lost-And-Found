@@ -117,10 +117,6 @@ import { NavLink } from "react-router-dom";
         <IoIosLogOut /> Log Out
         </NavLink>
         </ul>
-        {/* <ul className="p-2 shadow menu lg:hidden right-0 w-fit  dropdown-content z-[1] bg-base-100 rounded-box lg:w-52">
-          <li><a>Dashboard</a></li>
-          <li><a>Log Out</a></li>
-        </ul> */}
       </details>
               }
         </div>

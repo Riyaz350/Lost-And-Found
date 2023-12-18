@@ -1,8 +1,7 @@
 
 const Lost = () => {
     return (
-        <div>
-        </div>
+        <></>
     );
 };
 
