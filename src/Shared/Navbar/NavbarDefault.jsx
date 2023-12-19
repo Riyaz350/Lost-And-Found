@@ -1,74 +1,77 @@
 import React from "react";
-import {Navbar,MobileNav,Typography,Button,IconButton,} from "@material-tailwind/react";
+import {Navbar,Typography,Button,IconButton, Collapse} from "@material-tailwind/react";
 import { FaHome, FaQuestionCircle, FaPhoneAlt } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import { MdFindInPage } from "react-icons/md";
+import { IoIosLogOut } from "react-icons/io";
+import { MdFindInPage, MdOutlineDashboard } from "react-icons/md";
 import { motion } from "framer-motion"
 import { NavLink } from "react-router-dom";
 
  function NavbarDefault() {
   const [openNav, setOpenNav] = React.useState(false);
+  const [openMenu, setOpenMenu] = React.useState(false);
   const user = true
-  const menuClass = "flex items-center gap-x-2 font-medium  cursor-pointer hover:shadow-xl bg-white rounded-lg p-2"
-  const ulClass = "mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-end lg:gap-6"
+  const menuClass = "flex items-center gap-x-2 font-medium w-full cursor-pointer hover:shadow-xl  bg-white rounded-lg p-2"
+  const activeMenuClass = "flex items-center gap-x-2 font-medium w-full text-white cursor-pointer hover:shadow-xl bg-[#022b3a] rounded-lg p-2"
+  const ulClass = "mt-2 mb-4 flex flex-col gap-2 xl:mb-0 xl:mt-0 xl:flex-row xl:items-end xl:gap-6"
  
   React.useEffect(() => {
     window.addEventListener("resize", () => window.innerWidth >= 960 && setOpenNav(false), ); }, []);
  
   const navList = (
     <ul className={ulClass}>
-      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .3}}>
-      <Typography   as="li" variant="small" color="blue-gray" className={menuClass} >
-        <FaHome />
-        <a href="#" className="">Home</a>
-      </Typography>
+      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} whileHover={{y:-5, transition: { duration: 0.1 }}} transition={{ duration: .3}}>
+      <NavLink to='/' className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
+        <FaHome />Home
+      </NavLink>
       </motion.div>
 
-      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .4}}>
-      <Typography  as="li" variant="small" color="blue-gray" className={menuClass}>
-       <FaMagnifyingGlass />Lost
-      </Typography>
+      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} whileHover={{y:-5, transition: { duration: 0.1 }}} transition={{ duration: .4}}>
+      <NavLink to='/lost' className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
+       <FaMagnifyingGlass />
+       Lost
+      </NavLink>
       </motion.div>
 
-      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .5}}>
-      <Typography  as="li" variant="small" color="blue-gray" className={menuClass}>
+    <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} whileHover={{y:-5, transition: { duration: 0.1 }}} transition={{ duration: .5}}>
+      <NavLink  className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
        <MdFindInPage />
-        <a href="#" className="flex items-center">Found</a>
-      </Typography>
+       Found
+      </NavLink>
       </motion.div>
 
-      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .6}}>
-      <Typography  as="li" variant="small" color="blue-gray" className={menuClass}>
+      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} whileHover={{y:-5, transition: { duration: 0.1 }}} transition={{ duration: .6}}>
+      <NavLink  className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
       <FaQuestionCircle />
-        <a href="#" className="flex items-center">How It Works </a>
-      </Typography>
+       How It Works
+      </NavLink>
       </motion.div>
 
-      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} transition={{ duration: .7}}>
-      <Typography  as="li" variant="small" color="blue-gray" className={menuClass}>
+      <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} whileHover={{y:-5, transition: { duration: 0.1 }}} transition={{ duration: .7}}>
+      <NavLink  className={({ isActive, isPending,  }) =>isPending ? "pending" : isActive ? activeMenuClass : menuClass}>
         <FaPhoneAlt />
-        <a href="#" className="flex items-center"> Contact Us </a>
-      </Typography>
+       Contact Us
+      </NavLink>
       </motion.div>
     </ul>
   );
  
   return (
-    <Navbar className="bg-[#bfdbf7] border-0 rounded-none  mx-auto max-w-full px-4 py-2 lg:px-8 lg:py-4 overflow-hidden">
+    <Navbar className="bg-[#bfdbf7] border-0  rounded-none flex-row-reverse  mx-auto max-w-full px-4 py-2 lg:px-8 lg:py-4 ">
       <div className=" mx-auto flex items-center justify-between text-blue-gray-900">
 
-        <motion.div initial={{scale:.2, x:-200}} animate={{scale: 1, x:0}} transition={{duration: .6}}>
-        <Typography  as="a" href="#" className="mr-4 cursor-pointer py-1.5 font-medium text-xl text-[#022b3a]">
-          <span className="text-[#022b3a] text-2xl">L</span>ost<span className="text-[#022b3a] text-2xl">N</span>foun<span className="text-[#022b3a] text-2xl">D</span>
+        <motion.div initial={{scale:.2}} animate={{scale: 1}} transition={{duration: .6}}>
+        <Typography  as="a" href="/" className="mr-4 cursor-pointer py-1.5 font-medium text-xl text-[#022b3a]">
+          <img className="w-[110px]  m-0" src="https://i.ibb.co/fGBFGB6/lostnfound-high-resolution-logo-transparent.png" alt="" />
         </Typography>
         </motion.div>
         
         {/* search, dashboard & login/signUp */}
         <div className="flex  justify-end gap-10 items-center text-[#022b3a]">
 
-        <div className="hidden lg:block">{navList}</div>
+        <div className="hidden xl:block">{navList}</div>
 
-        <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration: 1}} className="items-center hidden gap-x-2 lg:flex">
+        <motion.div initial={{y:-200}} animate={{y:0}} transition={{duration: .5, delay:.7}} className="items-center hidden gap-x-2 lg:flex">
           <div className="relative flex w-full gap-2 md:w-max">
             <div className="relative h-10 w-full  min-w-[288px]">
               <input type="search" placeholder="Lost something?"
@@ -103,14 +106,23 @@ import { NavLink } from "react-router-dom";
                 <span>Sign in</span>
               </Button>
             </div>:
-            <div className="">
-              <motion.img initial={{scale:.2, x:200}} animate={{scale: 1, x:0}} transition={{duration: .6}} className="w-[50px] rounded-full " src="https://i.ibb.co/F6tKccF/image.png" alt="" />
-            </div>
+      <details className="dropdown overflow-visible">
+        <summary className="p-0 rounded-full border-0 btn bg-transparent ">        <motion.img initial={{scale:.2}} animate={{scale: 1}} transition={{duration: .6}} className="w-[50px] rounded-full " src="https://i.ibb.co/F6tKccF/image.png" alt="" /></summary>
+        <ul className="p-2 shadow menu right-0 w-fit space-y-2 dropdown-content z-[1] bg-base-100 rounded-box lg:w-52">
+        <h1 className="text-[#022b3a] font-bold p-2 pl-4">Username</h1>
+        <NavLink  className={` ${menuClass} hover:bg-[#022b3a] hover:text-white`}>
+        <MdOutlineDashboard />Dashboard
+        </NavLink>
+        <NavLink  className={` ${menuClass} hover:bg-[#022b3a] hover:text-white`}>
+        <IoIosLogOut /> Log Out
+        </NavLink>
+        </ul>
+      </details>
               }
         </div>
         </div>
         
-        <IconButton variant="text" className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden" ripple={false} onClick={() => setOpenNav(!openNav)}>
+        <IconButton variant="text" className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent xl:hidden" ripple={false} onClick={() => setOpenNav(!openNav)}>
           {openNav ? (
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" className="h-6 w-6" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
@@ -121,8 +133,8 @@ import { NavLink } from "react-router-dom";
         </IconButton>
       </div>
 
-      <MobileNav open={openNav}>
-        <div className="container lg:hidden mx-auto text-[#022b3a]">
+      <Collapse open={openNav}>
+        <div className="container xl:hidden mx-auto text-[#022b3a]">
           {navList}
 
           {!user? 
@@ -137,7 +149,7 @@ import { NavLink } from "react-router-dom";
         <div></div>}
 
         </div>
-      </MobileNav>
+      </Collapse>
       
     </Navbar>
   );
